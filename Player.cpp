@@ -5,7 +5,7 @@
 
 // Constructor
 Player::Player(sf::Texture& _texture)
-	: GridSprite(_texture)
+	: GridSprite(_texture, GridObject::PLAYER)
 {
 
 }

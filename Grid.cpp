@@ -190,7 +190,7 @@ void Grid::MoveObject(int _xOrigin, int _yOrigin,
 		GridObject* toMove = GetOjbect(_xOrigin, _yOrigin);
 
 		// Remove it from its initial slot
-		SetObject(_xOrigin, _yOrigin, nullptr);
+		SetObject(_xOrigin, _yOrigin, nullptr, false);
 
 		// Set it in its new slot
 		// By default this will delete anything in that
