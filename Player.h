@@ -11,7 +11,12 @@ public:
 	// Constructor
 	Player(sf::Texture& _texture);
 
+	int m_DiamondsCollected;
+
 	// Game Object Functions
 	bool input(const sf::Event& _event) override;
+
+	//Collect Diamond funciton
+	void CollectDiamond();
 
 };

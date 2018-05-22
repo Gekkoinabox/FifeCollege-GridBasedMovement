@@ -193,6 +193,9 @@ void Grid::MoveObject(int _xOrigin, int _yOrigin,
 		SetObject(_xOrigin, _yOrigin, nullptr, false);
 
 		// Set it in its new slot
+
+		//Put something here for boulders maybe to not destroy it?
+
 		// By default this will delete anything in that
 		// slot already
 		SetObject(_xNew, _yNew, toMove, _deleteExisting);
