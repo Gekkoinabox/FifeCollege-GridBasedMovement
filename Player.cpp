@@ -65,6 +65,11 @@ bool Player::input(const sf::Event& _event)
 				CollectDiamond();
 			}
 
+			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
+			{
+				m_grid->MoveObject()
+			}
+
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT && m_DiamondsCollected >= 3)
 			{
 				//Go to next level
