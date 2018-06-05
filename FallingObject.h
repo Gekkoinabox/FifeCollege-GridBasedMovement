@@ -5,6 +5,7 @@
 class FallingObject : public GridSprite
 {
 public:
-	void CheckBelow();
 	void Fall();
+
+	void update(const float& _dtAsSeconds) override;
 };

@@ -4,7 +4,7 @@
 #include "Engine.h"
 #include "GridSprite.h"
 
-void FallingObject::CheckBelow()
+void FallingObject::Fall()
 {
 	int targetX = m_gridX;
 	int targetY = m_gridY-1;
@@ -12,7 +12,7 @@ void FallingObject::CheckBelow()
 	// Get the object currently in our target Cell
 	GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
 
-	if (targetCellObject ==nullptr)
+	if (targetCellObject == nullptr)
 	{
 		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 	}
@@ -20,7 +20,7 @@ void FallingObject::CheckBelow()
 	// TODO: perform special actions based on content of target cell
 }
 
-void FallingObject::Fall()
+void FallingObject::update(const float& _dtAsSeconds)
 {
-	
+	Fall();
 }
