@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "Grid.h"
+#include "Engine.h"
+#include "GridSprite.h"
 
 
 // Constructor
@@ -30,25 +32,29 @@ bool Player::input(const sf::Event& _event)
 			if (_event.key.code == sf::Keyboard::Up)
 			{
 				--targetY;
+				keyLastPressed = "Up";
 			}
 			else if (_event.key.code == sf::Keyboard::Down)
 			{
 				++targetY;
+				keyLastPressed = "Down";
 			}
 			else if (_event.key.code == sf::Keyboard::Left)
 			{
 				--targetX;
+				keyLastPressed = "Left";
 			}
 			else if (_event.key.code == sf::Keyboard::Right)
 			{
 				++targetX;
+				keyLastPressed = "Right";
 			}
 
 			// Get the object currently in our target Cell
 			GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
 
 			// TODO: perform special actions based on content of target cell
-			// (if boulder, push)
+			
 			// (if boulder and can't push, don't move)
 			
 			// (if closed exit, don't move)
@@ -67,7 +73,18 @@ bool Player::input(const sf::Event& _event)
 
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
 			{
-				m_grid->MoveObject()
+				if (keyLastPressed == "Left")
+				{
+				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
+				m_grid->SetObject(targetX - 1, targetY, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+				
+				}
+				else if (keyLastPressed == "Right")
+				{
+					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
+					m_grid->SetObject(targetX + 1, targetY, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+				}
+				
 			}
 
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT && m_DiamondsCollected >= 3)

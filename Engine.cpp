@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "GridSprite.h"
 #include "Player.h"
+#include "FallingObject.h"
 
 using namespace sf;
 

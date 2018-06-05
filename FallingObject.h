@@ -4,6 +4,7 @@
 
 class FallingObject : public GridSprite
 {
+public:
 	void CheckBelow();
 	void Fall();
 };
