@@ -11,6 +11,7 @@ void FallingObject::Fall()
 
 	// Get the object currently in our target Cell
 	GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
+	m_grid->GetOjbect(m_gridX, m_gridY);
 
 	if (targetCellObject == nullptr)
 	{

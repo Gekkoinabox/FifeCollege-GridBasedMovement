@@ -44,8 +44,8 @@ Engine::Engine()
 	m_Grid.SetObject(3, 2, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
 
 	// create boulders
-	m_Grid.SetObject(1, 3, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
-	m_Grid.SetObject(7, 7, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+	m_Grid.SetObject(1, 3, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+	m_Grid.SetObject(7, 7, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
 
 	// Fill the rest of our grid with dirt
 	for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
