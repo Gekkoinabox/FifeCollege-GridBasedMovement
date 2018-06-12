@@ -13,14 +13,15 @@ public:
 	Player(sf::Texture& _texture);
 
 	int m_DiamondsCollected;
-	public:bool playerAlive;
 	std::string keyLastPressed;
+
 
 	// Game Object Functions
 	bool input(const sf::Event& _event) override;
 
 	//Collect Diamond funciton
 	void CollectDiamond();
+
 
 
 };

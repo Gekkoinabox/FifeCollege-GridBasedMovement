@@ -6,10 +6,13 @@
 
 void FallingObject::Fall()
 {
-	//sf::Clock clock1;
-	//sf::Time elapsed = clock1.getElapsedTime();
-	//if (elapsed.asSeconds() == 1)
-	//{
+	sf::Clock clock1;
+	sf::Time dt = clock1.restart();
+	
+	m_TimeRemaining -= dt.asSeconds();
+
+	if (m_TimeRemaining <= 0.0f)
+	{
 		int targetX = m_gridX;
 		int targetY = m_gridY + 1;
 
@@ -17,23 +20,20 @@ void FallingObject::Fall()
 		GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
 		m_grid->GetOjbect(m_gridX, m_gridY);
 
-		//If there is nothing in the target cell
 		if (targetCellObject == nullptr)
 		{
-			//Move into that space
-			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 		}
-		//If the player is in the target cell
 		else if (targetCellObject->GetType() == GridObject::PLAYER)
 		{
-			//Move into that slot and kill the player
-			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 			//TODO: GAMEOVER SCREEN
 		}
-		//clock1.restart();
+		m_TimeRemaining = 1.0f;
 		
-	//}
+	}
 
+	// TODO: perform special actions based on content of target cell
 }
 
 void FallingObject::update(const float& _dtAsSeconds)
