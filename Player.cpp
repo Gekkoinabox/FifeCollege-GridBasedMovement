@@ -64,32 +64,49 @@ bool Player::input(const sf::Event& _event)
 			if (targetCellObject == nullptr || targetCellObject->GetType() == GridObject::DIRT)
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
 
-			// (if diamond, collect)
+			//Check if target is a diamond
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::DIAMOND)
 			{
+				//Destroy diamond and move player to the grid
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+				//add 1 diamond to the collection
 				CollectDiamond();
 			}
-
+			//Check if the target is the boulder
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
 			{
+				//Check to see if the player is going left
 				if (keyLastPressed == "Left")
 				{
-				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
-				m_grid->SetObject(targetX - 1, targetY, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+					//Get boulder grid object
+					m_grid->GetOjbect(targetX -1, targetY);
+					//Move boulder to the right 1 grid space
+					m_grid->MoveObject(m_gridX - 1, m_gridY, targetX - 1, targetY, false);
+					//Get Player grid Object
+					m_grid->GetOjbect(targetX, targetY);
+					//Move Player to the right 1 grid space
+					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
 				
 				}
+				//Check to see if the player is going right
 				else if (keyLastPressed == "Right")
 				{
+					//Get boulder grid object
+					m_grid->GetOjbect(targetX + 1, targetY);
+					//Move boulder to the right 1 grid space
+					m_grid->MoveObject(m_gridX+1, m_gridY, targetX+1, targetY, false);
+					//Get Player grid Object
+					m_grid->GetOjbect(targetX, targetY);
+					//Move Player to the right 1 grid space
 					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
-					m_grid->SetObject(targetX + 1, targetY, new GridSprite(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
 				}
 				
 			}
 
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT && m_DiamondsCollected >= 3)
 			{
-				//Go to next level
+				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+				//TODO: CHANGELEVEL
 			}
 
 			// Return true since we handled some input

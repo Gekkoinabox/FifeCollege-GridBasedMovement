@@ -21,11 +21,15 @@ private:
 	void input();
 	void update(float dtAsSeconds);
 	void draw();
+	
 
 public:
+
 	// The Engine Constructor
 	Engine();
 
 	// Run will call all the private functions
 	void run();
+
+	void setLevel(int currentLevel);
 };

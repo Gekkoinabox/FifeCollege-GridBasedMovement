@@ -31,31 +31,8 @@ Engine::Engine()
 	// Set up the grid contents
 	// NOTE: This could be done based on a file
 	// similar to how Thomas Was Late levels were loaded!
+	setLevel(1);
 	
-	// create player
-	m_Grid.SetObject(0, 0, new Player(TextureHolder::GetTexture("graphics/player_down_01.png")));
-	
-	// create exit
-	m_Grid.SetObject(9, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_locked.png"), GridObject::EXIT));
-
-	// create diamonds
-	m_Grid.SetObject(1, 4, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
-	m_Grid.SetObject(1, 6, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
-	m_Grid.SetObject(3, 2, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
-
-	// create boulders
-	m_Grid.SetObject(1, 3, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
-	m_Grid.SetObject(7, 7, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
-
-	// Fill the rest of our grid with dirt
-	for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
-	{
-		for (int y = 0; y < m_Grid.GRID_SIZE_Y; ++y)
-		{
-			if (m_Grid.GetOjbect(x, y) == nullptr)
-				m_Grid.SetObject(x, y, new GridSprite(TextureHolder::GetTexture("graphics/dirt.png"), GridObject::DIRT));
-		}
-	}
 }
 
 void Engine::run()
@@ -74,5 +51,36 @@ void Engine::run()
 		input();
 		update(dtAsSeconds);
 		draw();
+	}
+}
+
+void Engine::setLevel(int currentLevel)
+{
+	if (currentLevel == 1)
+	{
+		// create player
+		m_Grid.SetObject(0, 0, new Player(TextureHolder::GetTexture("graphics/player_down_01.png")));
+
+		// create exit
+		m_Grid.SetObject(9, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_locked.png"), GridObject::EXIT));
+
+		// create diamonds
+		m_Grid.SetObject(1, 4, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(1, 6, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(3, 2, new GridSprite(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+
+		// create boulders
+		m_Grid.SetObject(1, 3, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(7, 7, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+
+		// Fill the rest of our grid with dirt
+		for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
+		{
+			for (int y = 0; y < m_Grid.GRID_SIZE_Y; ++y)
+			{
+				if (m_Grid.GetOjbect(x, y) == nullptr)
+					m_Grid.SetObject(x, y, new GridSprite(TextureHolder::GetTexture("graphics/dirt.png"), GridObject::DIRT));
+			}
+		}
 	}
 }
