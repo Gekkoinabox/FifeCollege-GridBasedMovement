@@ -14,5 +14,11 @@ void Engine::update(float dtAsSeconds)
 	{
 		setLevel(m_CurrentLevel);
 	}
+	if (m_Grid.CheckForDiamonds() == 0 && m_Grid.changedExit == false)
+	{
+		m_Grid.SetObject(9, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_open.png"), GridObject::EXIT));
+		m_Grid.changedExit = true;
+	}
+		
 
 } // end function update()

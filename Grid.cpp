@@ -24,6 +24,8 @@ Grid::Grid(const int _GRID_SIZE_X,
 			m_GridArray[x][y] = nullptr;
 		}
 	}
+
+	changedExit = false;
 }
 
 // Destructor
@@ -121,7 +123,7 @@ bool Grid::CheckForPlayer()
 
 int Grid::CheckForDiamonds()
 {
-	int m_numberOfDiamonds;
+	int m_numberOfDiamonds = 0;
 
 	for (int x = 0; x < GRID_SIZE_X; ++x)
 	{

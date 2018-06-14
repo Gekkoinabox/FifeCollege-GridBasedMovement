@@ -108,6 +108,7 @@ bool Player::input(const sf::Event& _event)
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
 				//TODO: CHANGELEVEL
 				newLevelNeeded = true;
+				
 			}
 
 			// Return true since we handled some input
