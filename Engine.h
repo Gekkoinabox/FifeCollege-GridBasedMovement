@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include "TextureHolder.h"
 #include "Grid.h"
+#include "Player.h"
 
 class Engine
 {
@@ -15,6 +16,7 @@ private:
 
 	// The grid (will hold everything else)
 	Grid m_Grid;
+	
 
 	// Private functions for internal use only:
 private:
@@ -24,12 +26,12 @@ private:
 	
 
 public:
-
+	bool newLevelNeeded;
+	int m_CurrentLevel;
 	// The Engine Constructor
 	Engine();
 
 	// Run will call all the private functions
 	void run();
-
 	void setLevel(int currentLevel);
 };

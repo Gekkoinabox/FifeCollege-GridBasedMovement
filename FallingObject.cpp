@@ -6,13 +6,14 @@
 
 void FallingObject::Fall()
 {
-	sf::Clock clock1;
-	sf::Time dt = clock1.restart();
+	//sf::Clock clock1;
+	//sf::Time dt = clock1.restart();
 	
-	m_TimeRemaining -= dt.asSeconds();
+	//m_TimeRemaining -= dt.asSeconds();
 
-	if (m_TimeRemaining <= 0.0f)
-	{
+	//if (m_TimeRemaining <= 0.0f)
+	//{
+		//Check Below
 		int targetX = m_gridX;
 		int targetY = m_gridY + 1;
 
@@ -29,9 +30,36 @@ void FallingObject::Fall()
 			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 			//TODO: GAMEOVER SCREEN
 		}
-		m_TimeRemaining = 1.0f;
+		//m_TimeRemaining = 1.0f;
+
+		//Check Left
+		targetX = m_gridX - 1;
+		targetY = m_gridY;
+
+		// Get the object currently in our target Cell
+		targetCellObject = m_grid->GetOjbect(targetX, targetY);
+		m_grid->GetOjbect(m_gridX, m_gridY);
+
+		if (targetCellObject == nullptr)
+		{
+			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
+		}
+
+		//Check right
+		targetX = m_gridX + 1;
+		targetY = m_gridY;
+
+		// Get the object currently in our target Cell
+		targetCellObject = m_grid->GetOjbect(targetX, targetY);
+		m_grid->GetOjbect(m_gridX, m_gridY);
+
+		if (targetCellObject == nullptr)
+		{
+			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
+		}
 		
-	}
+		
+	//}
 
 	// TODO: perform special actions based on content of target cell
 }

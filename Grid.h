@@ -38,11 +38,20 @@ public:
 	sf::Vector2f GetPosition() { return m_GridPosition; }
 	void SetPosition(sf::Vector2f _newPos) { m_GridPosition = _newPos; }
 
+	bool CheckForPlayer();
+	int CheckForDiamonds();
+
+	int numberOfDiamonds;
+	bool changedExit;
+
 	// Const grid data members can be public
 	const int GRID_SIZE_X;
 	const int GRID_SIZE_Y;
 	const float CELL_WIDTH;
 	const float CELL_HEIGHT;
+
+	bool playerDead;
+	int numberOfPlayers;
 
 private:
 

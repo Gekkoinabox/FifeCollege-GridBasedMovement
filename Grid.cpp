@@ -103,6 +103,40 @@ void Grid::update(const float& _dtAsSeconds)
 	}
 }
 
+bool Grid::CheckForPlayer()
+{
+	for (int x = 0; x < GRID_SIZE_X; ++x)
+	{
+		for (int y = 0; y < GRID_SIZE_Y; ++y)
+		{
+			// We check for nullptr in case there is nothing in this grid slot!
+			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::PLAYER)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int Grid::CheckForDiamonds()
+{
+	int m_numberOfDiamonds;
+
+	for (int x = 0; x < GRID_SIZE_X; ++x)
+	{
+		for (int y = 0; y < GRID_SIZE_Y; ++y)
+		{
+			// We check for nullptr in case there is nothing in this grid slot!
+			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::DIAMOND)
+			{
+				m_numberOfDiamonds++;
+			}
+		}
+	}
+	return m_numberOfDiamonds;
+}
+
 // Draw - draws the object to the window each frame
 void Grid::draw(sf::RenderWindow& _renderWindow)
 {

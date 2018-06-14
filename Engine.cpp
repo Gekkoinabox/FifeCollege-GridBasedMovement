@@ -31,7 +31,8 @@ Engine::Engine()
 	// Set up the grid contents
 	// NOTE: This could be done based on a file
 	// similar to how Thomas Was Late levels were loaded!
-	setLevel(1);
+	newLevelNeeded = true;
+	m_CurrentLevel = 1;
 	
 }
 
@@ -58,6 +59,15 @@ void Engine::setLevel(int currentLevel)
 {
 	if (currentLevel == 1)
 	{
+		// Clear the grid
+		for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
+		{
+			for (int y = 0; y < m_Grid.GRID_SIZE_Y; ++y)
+			{
+				
+					m_Grid.SetObject(x, y, nullptr, true);
+			}
+		}
 		// create player
 		m_Grid.SetObject(0, 0, new Player(TextureHolder::GetTexture("graphics/player_down_01.png")));
 
@@ -83,4 +93,7 @@ void Engine::setLevel(int currentLevel)
 			}
 		}
 	}
+
+
+	m_CurrentLevel = currentLevel;
 }

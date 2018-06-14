@@ -21,6 +21,8 @@ public:
 
 	//Collect Diamond funciton
 	void CollectDiamond();
+	bool m_Dead;
+	bool newLevelNeeded = false;
 
 
 
