@@ -24,8 +24,6 @@ Grid::Grid(const int _GRID_SIZE_X,
 			m_GridArray[x][y] = nullptr;
 		}
 	}
-
-	changedExit = false;
 }
 
 // Destructor
@@ -105,8 +103,9 @@ void Grid::update(const float& _dtAsSeconds)
 	}
 }
 
-bool Grid::CheckForPlayer()
+bool Grid::CheckForPlayer() //Check to see if the player is on the grid in case he has been crushed :(
 {
+	//Check through every single grid space
 	for (int x = 0; x < GRID_SIZE_X; ++x)
 	{
 		for (int y = 0; y < GRID_SIZE_Y; ++y)
@@ -114,17 +113,19 @@ bool Grid::CheckForPlayer()
 			// We check for nullptr in case there is nothing in this grid slot!
 			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::PLAYER)
 			{
+				//Player is okay :)
 				return true;
 			}
 		}
 	}
+	//Couldn't find player :'(
 	return false;
 }
 
-int Grid::CheckForDiamonds()
+int Grid::CheckForDiamonds() //Count how many diamonds there are
 {
 	int m_numberOfDiamonds = 0;
-
+	//Check through every single grid space
 	for (int x = 0; x < GRID_SIZE_X; ++x)
 	{
 		for (int y = 0; y < GRID_SIZE_Y; ++y)
@@ -132,16 +133,18 @@ int Grid::CheckForDiamonds()
 			// We check for nullptr in case there is nothing in this grid slot!
 			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::DIAMOND)
 			{
+				//Add 1 to diamond counter
 				m_numberOfDiamonds++;
 			}
 		}
 	}
+	//Report back on how many diamonds we found
 	return m_numberOfDiamonds;
 }
 
-int Grid::CheckForExit()
+bool Grid::CheckForExit() //Check if there is an exit
 {
-	int m_numberOfExits = 0;
+	//Check through every single grid space
 	for (int x = 0; x < GRID_SIZE_X; ++x)
 	{
 		for (int y = 0; y < GRID_SIZE_Y; ++y)
@@ -149,11 +152,13 @@ int Grid::CheckForExit()
 			// We check for nullptr in case there is nothing in this grid slot!
 			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::EXIT)
 			{
-				m_numberOfExits++;
+				//Player has not eaten the exit
+				return true;
 			}
 		}
 	}
-	return m_numberOfExits;
+	//Exit is gone :o
+	return false;
 }
 
 // Draw - draws the object to the window each frame

@@ -39,9 +39,8 @@ public:
 	void SetPosition(sf::Vector2f _newPos) { m_GridPosition = _newPos; }
 
 	bool CheckForPlayer();
+	bool CheckForExit();
 	int CheckForDiamonds();
-	int CheckForExit();
-
 	int numberOfDiamonds;
 	int currentLevel;
 	bool changedExit;

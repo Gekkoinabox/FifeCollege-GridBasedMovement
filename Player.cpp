@@ -53,13 +53,6 @@ bool Player::input(const sf::Event& _event)
 			// Get the object currently in our target Cell
 			GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
 
-			// TODO: perform special actions based on content of target cell
-			
-			// (if boulder and can't push, don't move)
-			
-			// (if closed exit, don't move)
-			// (if open exit, go to next level)
-
 			// NOTE: This will automatically delete whatever GridObject is in the target cell!
 			if (targetCellObject == nullptr || targetCellObject->GetType() == GridObject::DIRT)
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
@@ -69,9 +62,9 @@ bool Player::input(const sf::Event& _event)
 			{
 				//Destroy diamond and move player to the grid
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
-				//add 1 diamond to the collection
-				CollectDiamond();
+
 			}
+			//I TRIED TO MAKE THE BOULDER PUSHING WORK BUT IT WAS TOO COMPLICATED SO I COULDN'T BE BOTHERED FINISHING IT
 			////Check if the target is the boulder
 			//else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
 			//{
@@ -101,17 +94,14 @@ bool Player::input(const sf::Event& _event)
 			//		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
 			//	}
 			//}
-
+			//Check if the target is an exit
 			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT)
 			{
+				//If there are no diamonds we will eat the exit
 				if (m_grid->CheckForDiamonds() == 0)
 				{
 					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
 				}
-
-				//TODO: CHANGELEVEL
-				newLevelNeeded = true;
-				
 			}
 
 			// Return true since we handled some input
@@ -119,10 +109,4 @@ bool Player::input(const sf::Event& _event)
 		}
 
 	}
-}
-
-void Player::CollectDiamond()
-{
-	//Add 1 to diamonds collected
-	++m_DiamondsCollected;
 }

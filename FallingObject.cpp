@@ -21,15 +21,17 @@ void FallingObject::Fall()
 	GridObject* targetCellObject = m_grid->GetOjbect(targetX, targetY);
 	m_grid->GetOjbect(m_gridX, m_gridY);
 
+	//If the grid space below is empty then move there
 	if (targetCellObject == nullptr)
 	{
 		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 	}
+	//If its a player crush them
 	else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::PLAYER)
 	{
 		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
-		//TODO: GAMEOVER SCREEN
 	}
+	//If its a boulder and the current object flying through the air is a boulder then make it slide
 	else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER && isBoulder == true)
 	{
 		//Check Left to see if its empty
@@ -39,7 +41,7 @@ void FallingObject::Fall()
 		targetCellObject = m_grid->GetOjbect(targetX, targetY);
 		// Get the object currently in our target Cell
 		m_grid->GetOjbect(m_gridX, m_gridY);
-
+		//Move left
 		if (targetCellObject == nullptr)
 		{
 			m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
@@ -54,23 +56,29 @@ void FallingObject::Fall()
 			targetCellObject = m_grid->GetOjbect(targetX, targetY);
 			m_grid->GetOjbect(m_gridX, m_gridY);
 
+			//Move right
 			if (targetCellObject == nullptr)
 			{
 				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY);
 			}
+			//There is a bug where the boulder constantly moves left and 
+			//right while on top of two boulders next to each other, To 
+			//solve this i can use a tracker of some sort just like I used
+			//on the player to prevent repeat movements
 		}
 	}
-
-
-	// TODO: perform special actions based on content of target cell
 }
 
-void FallingObject::update(const float& _dtAsSeconds)
+void FallingObject::update(const float& _dtAsSeconds) //Update falling object
 {
+	//Take time away from timer
 	framesSinceLastUpdate -= _dtAsSeconds;
+	//If we run out of time
 	if (framesSinceLastUpdate <= 0)
 	{
+		//Make everything fall
 		Fall();
+		//Reset timer
 		framesSinceLastUpdate = 1.00f;
 	}
 }

@@ -9,7 +9,7 @@ void Engine::input()
 	while (m_Window.pollEvent(event))
 	{
 		m_Grid.input(event);
-
+		//Check if key is pressed
 		if (event.type == Event::KeyPressed)
 		{
 			// Handle quit

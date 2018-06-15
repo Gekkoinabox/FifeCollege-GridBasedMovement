@@ -26,7 +26,6 @@ private:
 	
 
 public:
-	bool newLevelNeeded;
 	int m_CurrentLevel;
 	// The Engine Constructor
 	Engine();

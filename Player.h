@@ -8,22 +8,11 @@
 class Player : public GridSprite
 {
 public:
-
 	// Constructor
 	Player(sf::Texture& _texture);
-
-	int m_DiamondsCollected;
 	std::string keyLastPressed;
-
 
 	// Game Object Functions
 	bool input(const sf::Event& _event) override;
-
-	//Collect Diamond funciton
-	void CollectDiamond();
-	bool m_Dead;
-	bool newLevelNeeded = false;
-
-
 
 };

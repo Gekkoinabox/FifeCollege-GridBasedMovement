@@ -31,7 +31,6 @@ Engine::Engine()
 	// Set up the grid contents
 	// NOTE: This could be done based on a file
 	// similar to how Thomas Was Late levels were loaded!
-	newLevelNeeded = true;
 	m_CurrentLevel = 1;
 	
 }
@@ -55,8 +54,9 @@ void Engine::run()
 	}
 }
 
-void Engine::setLevel(int currentLevel)
+void Engine::setLevel(int currentLevel) //Handing setting up the level
 {
+	//Check current level
 	if (currentLevel == 1)
 	{
 		// Clear the grid
@@ -103,6 +103,7 @@ void Engine::setLevel(int currentLevel)
 		}
 	}
 
+	//Check current level
 	if (currentLevel == 2)
 	{
 		// Clear the grid
@@ -151,6 +152,7 @@ void Engine::setLevel(int currentLevel)
 		}
 	}
 
+	//Check current level
 	if (currentLevel == 3)
 	{
 		// Clear the grid
@@ -200,6 +202,7 @@ void Engine::setLevel(int currentLevel)
 		}
 	}
 
+	//Check current level
 	if (currentLevel == 4)
 	{
 		// Clear the grid
@@ -244,7 +247,7 @@ void Engine::setLevel(int currentLevel)
 			}
 		}
 	}
-
+	//Check current level
 	if (currentLevel == 5)
 	{
 		// Clear the grid
@@ -296,11 +299,15 @@ void Engine::setLevel(int currentLevel)
 			}
 		}
 	}
+	//Check current level
 	if (currentLevel == 6)
 	{
+		//close the game as all levels are finished
 		m_Window.close();
 	}
 
+	//reset changed exit so if we die after the exit is opened we can still change the exit
 	m_Grid.changedExit = false;
+	//Set current level
 	m_CurrentLevel = currentLevel;
 }
