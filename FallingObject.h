@@ -5,8 +5,9 @@
 class FallingObject : public GridSprite
 {
 private:
-	float m_TimeRemaining = 1.0f;
-	float m_CurrentTime = 0.0f;
+
+	float framesSinceLastUpdate = 1.000f;
+	bool isBoulder = false;
 
 public:
 	FallingObject(sf::Texture& _texture, GridObject::Type _type) : GridSprite(_texture, _type){}

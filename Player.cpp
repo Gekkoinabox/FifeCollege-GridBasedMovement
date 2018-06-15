@@ -72,40 +72,43 @@ bool Player::input(const sf::Event& _event)
 				//add 1 diamond to the collection
 				CollectDiamond();
 			}
-			//Check if the target is the boulder
-			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
-			{
-				//Check to see if the player is going left
-				if (keyLastPressed == "Left")
-				{
-					//Get boulder grid object
-					m_grid->GetOjbect(targetX -1, targetY);
-					//Move boulder to the right 1 grid space
-					m_grid->MoveObject(m_gridX - 1, m_gridY, targetX - 1, targetY, false);
-					//Get Player grid Object
-					m_grid->GetOjbect(targetX, targetY);
-					//Move Player to the right 1 grid space
-					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
-				
-				}
-				//Check to see if the player is going right
-				else if (keyLastPressed == "Right")
-				{
-					//Get boulder grid object
-					m_grid->GetOjbect(targetX + 1, targetY);
-					//Move boulder to the right 1 grid space
-					m_grid->MoveObject(m_gridX+1, m_gridY, targetX+1, targetY, false);
-					//Get Player grid Object
-					m_grid->GetOjbect(targetX, targetY);
-					//Move Player to the right 1 grid space
-					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
-				}
-				
-			}
+			////Check if the target is the boulder
+			//else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::BOULDER)
+			//{
+			//	//Check to see if the player is going left
+			//	if (keyLastPressed == "Left" && m_grid->GetOjbect(targetX - 2, targetY) == nullptr && (targetX - 2) >= -1)
+			//	{
+			//		//Get boulder grid object
+			//		m_grid->GetOjbect(targetX -1, targetY);
+			//		//Move boulder to the right 1 grid space
+			//		m_grid->MoveObject(m_gridX - 1, m_gridY, targetX - 1, targetY, false);
+			//		//Get Player grid Object
+			//		m_grid->GetOjbect(targetX, targetY);
+			//		//Move Player to the right 1 grid space
+			//		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
+			//	
+			//	}
+			//	//Check to see if the player is going right
+			//	if (keyLastPressed == "Right" && m_grid->GetOjbect(targetX + 2, targetY) == nullptr && (targetX + 2) <= 15)
+			//	{
+			//		//Get boulder grid object
+			//		m_grid->GetOjbect(targetX + 1, targetY);
+			//		//Move boulder to the right 1 grid space
+			//		m_grid->MoveObject(m_gridX+1, m_gridY, targetX+1, targetY, false);
+			//		//Get Player grid Object
+			//		m_grid->GetOjbect(targetX, targetY);
+			//		//Move Player to the right 1 grid space
+			//		m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, false);
+			//	}
+			//}
 
-			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT && m_DiamondsCollected >= 3)
+			else if (targetCellObject != nullptr && targetCellObject->GetType() == GridObject::EXIT)
 			{
-				m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+				if (m_grid->CheckForDiamonds() == 0)
+				{
+					m_grid->MoveObject(m_gridX, m_gridY, targetX, targetY, true);
+				}
+
 				//TODO: CHANGELEVEL
 				newLevelNeeded = true;
 				

@@ -139,6 +139,23 @@ int Grid::CheckForDiamonds()
 	return m_numberOfDiamonds;
 }
 
+int Grid::CheckForExit()
+{
+	int m_numberOfExits = 0;
+	for (int x = 0; x < GRID_SIZE_X; ++x)
+	{
+		for (int y = 0; y < GRID_SIZE_Y; ++y)
+		{
+			// We check for nullptr in case there is nothing in this grid slot!
+			if (m_GridArray[x][y] != nullptr && m_GridArray[x][y]->GetType() == GridObject::EXIT)
+			{
+				m_numberOfExits++;
+			}
+		}
+	}
+	return m_numberOfExits;
+}
+
 // Draw - draws the object to the window each frame
 void Grid::draw(sf::RenderWindow& _renderWindow)
 {

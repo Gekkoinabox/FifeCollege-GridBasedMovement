@@ -40,8 +40,10 @@ public:
 
 	bool CheckForPlayer();
 	int CheckForDiamonds();
+	int CheckForExit();
 
 	int numberOfDiamonds;
+	int currentLevel;
 	bool changedExit;
 
 	// Const grid data members can be public

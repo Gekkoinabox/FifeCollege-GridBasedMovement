@@ -9,6 +9,7 @@ void Engine::update(float dtAsSeconds)
 {
 
 	// Update the grid
+	
 	m_Grid.update(dtAsSeconds);
 	if (!m_Grid.CheckForPlayer())
 	{
@@ -16,9 +17,15 @@ void Engine::update(float dtAsSeconds)
 	}
 	if (m_Grid.CheckForDiamonds() == 0 && m_Grid.changedExit == false)
 	{
-		m_Grid.SetObject(9, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_open.png"), GridObject::EXIT));
+		if( m_CurrentLevel == 1)
+			m_Grid.SetObject(14, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_open.png"), GridObject::EXIT));
 		m_Grid.changedExit = true;
 	}
+	if (m_Grid.CheckForExit() == 0)
+	{
+		Engine::setLevel((Engine::m_CurrentLevel) + 1);
+	}
+	
 		
 
 } // end function update()

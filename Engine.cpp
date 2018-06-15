@@ -72,6 +72,52 @@ void Engine::setLevel(int currentLevel)
 		m_Grid.SetObject(0, 0, new Player(TextureHolder::GetTexture("graphics/player_down_01.png")));
 
 		// create exit
+		m_Grid.SetObject(14,9, new GridSprite(TextureHolder::GetTexture("graphics/exit_locked.png"), GridObject::EXIT));
+
+		// create diamonds
+		m_Grid.SetObject(1, 4, new FallingObject(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(7, 3, new FallingObject(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(11, 1, new FallingObject(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(14, 2, new FallingObject(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+		m_Grid.SetObject(8, 7, new FallingObject(TextureHolder::GetTexture("graphics/diamond.png"), GridObject::DIAMOND));
+
+		// create boulders
+		m_Grid.SetObject(1, 5, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(1, 6, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(1, 7, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(7, 7, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(7, 2, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(8, 2, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(8, 3, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(11, 2, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+		m_Grid.SetObject(13, 2, new FallingObject(TextureHolder::GetTexture("graphics/boulder.png"), GridObject::BOULDER));
+
+		// Fill the rest of our grid with dirt
+		for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
+		{
+			for (int y = 0; y < m_Grid.GRID_SIZE_Y; ++y)
+			{
+				if (m_Grid.GetOjbect(x, y) == nullptr)
+					m_Grid.SetObject(x, y, new GridSprite(TextureHolder::GetTexture("graphics/dirt.png"), GridObject::DIRT));
+			}
+		}
+	}
+
+	if (currentLevel == 2)
+	{
+		// Clear the grid
+		for (int x = 0; x < m_Grid.GRID_SIZE_X; ++x)
+		{
+			for (int y = 0; y < m_Grid.GRID_SIZE_Y; ++y)
+			{
+
+				m_Grid.SetObject(x, y, nullptr, true);
+			}
+		}
+		// create player
+		m_Grid.SetObject(0, 0, new Player(TextureHolder::GetTexture("graphics/player_down_01.png")));
+
+		// create exit
 		m_Grid.SetObject(9, 9, new GridSprite(TextureHolder::GetTexture("graphics/exit_locked.png"), GridObject::EXIT));
 
 		// create diamonds
@@ -93,7 +139,6 @@ void Engine::setLevel(int currentLevel)
 			}
 		}
 	}
-
 
 	m_CurrentLevel = currentLevel;
 }
