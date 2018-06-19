@@ -16,7 +16,7 @@ void Engine::update(float dtAsSeconds)
 		setLevel(m_CurrentLevel);
 	}
 	//Check the grid if there are no diamonds and we havent changed the exit
-	if (m_Grid.CheckForDiamonds() == 0 && m_Grid.changedExit == false)
+	if (m_Grid.CheckForDiamonds() == 0 && m_Grid.ChangedExit() == false)
 	{
 		//Check level
 		if(m_CurrentLevel == 1)
@@ -39,7 +39,7 @@ void Engine::update(float dtAsSeconds)
 			//Overwrite the exit with the open one
 			m_Grid.SetObject(13, 7, new GridSprite(TextureHolder::GetTexture("graphics/exit_open.png"), GridObject::EXIT));
 		//Since we have changed the exit we will make it true so it does not infinitly create exits
-		m_Grid.changedExit = true;
+		m_Grid.setChangedExit(true);
 	}
 	//Check if there are any exits incase the player has ate it
 	if (m_Grid.CheckForExit() == false)

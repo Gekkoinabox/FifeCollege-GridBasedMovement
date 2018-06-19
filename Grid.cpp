@@ -161,6 +161,22 @@ bool Grid::CheckForExit() //Check if there is an exit
 	return false;
 }
 
+void Grid::setChangedExit(bool _data)
+{
+	changedExit = _data;
+}
+
+bool Grid::ChangedExit()
+{
+	if (changedExit == true)
+		return true;
+	else
+	{
+		return false;
+	}
+}
+
+
 // Draw - draws the object to the window each frame
 void Grid::draw(sf::RenderWindow& _renderWindow)
 {

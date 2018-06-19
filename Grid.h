@@ -40,8 +40,9 @@ public:
 
 	bool CheckForPlayer();
 	bool CheckForExit();
+	bool ChangedExit();
+	void setChangedExit( bool _data);
 	int CheckForDiamonds();
-	bool changedExit; //This needs to be public so it can be used in update
 	
 	// Const grid data members can be public
 	const int GRID_SIZE_X;
@@ -55,6 +56,7 @@ private:
 	int currentLevel;
 	bool playerDead;
 	int numberOfPlayers;
+	bool changedExit = false;
 
 	// 2 Dimmensional array to pointers to GridObjects
 	GridObject*** m_GridArray;

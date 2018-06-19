@@ -307,7 +307,7 @@ void Engine::setLevel(int currentLevel) //Handing setting up the level
 	}
 
 	//reset changed exit so if we die after the exit is opened we can still change the exit
-	m_Grid.changedExit = false;
+	m_Grid.setChangedExit(false);
 	//Set current level
 	m_CurrentLevel = currentLevel;
 }
